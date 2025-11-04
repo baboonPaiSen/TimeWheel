@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.riven.common.mapper.SubscriptionInfoMapper">
+  <resultMap id="BaseResultMap" type="com.riven.common.entity.SubscriptionInfo">
+    <!--@mbg.generated-->
+    <!--@Table subscription_info-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="client_id" jdbcType="VARCHAR" property="clientId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="send_type" jdbcType="INTEGER" property="sendType" />
+    <result column="cron_expression" jdbcType="VARCHAR" property="cronExpression" />
+    <result column="refer_type" jdbcType="VARCHAR" property="referType" />
+    <result column="param" jdbcType="VARCHAR" property="param" />
+    <result column="next_execution_time" jdbcType="TIMESTAMP" property="nextExecutionTime" />
+    <result column="last_execution_time" jdbcType="TIMESTAMP" property="lastExecutionTime" />
+    <result column="business_type" jdbcType="VARCHAR" property="businessType" />
+    <result column="subscription_type" jdbcType="VARCHAR" property="subscriptionType" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="to_email" jdbcType="VARCHAR" property="toEmail" />
+    <result column="cc_email" jdbcType="VARCHAR" property="ccEmail" />
+    <result column="from_email" jdbcType="VARCHAR" property="fromEmail" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, client_id, user_id, send_type, cron_expression, refer_type, param, next_execution_time, 
+    last_execution_time, business_type, subscription_type, created_at, updated_at, to_email, 
+    cc_email, from_email
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from subscription_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from subscription_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.riven.common.entity.SubscriptionInfo" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into subscription_info (client_id, user_id, send_type, 
+      cron_expression, refer_type, param, 
+      next_execution_time, last_execution_time, 
+      business_type, subscription_type, created_at, 
+      updated_at, to_email, cc_email, 
+      from_email)
+    values (#{clientId,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{sendType,jdbcType=INTEGER}, 
+      #{cronExpression,jdbcType=VARCHAR}, #{referType,jdbcType=VARCHAR}, #{param,jdbcType=VARCHAR}, 
+      #{nextExecutionTime,jdbcType=TIMESTAMP}, #{lastExecutionTime,jdbcType=TIMESTAMP}, 
+      #{businessType,jdbcType=VARCHAR}, #{subscriptionType,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{updatedAt,jdbcType=TIMESTAMP}, #{toEmail,jdbcType=VARCHAR}, #{ccEmail,jdbcType=VARCHAR}, 
+      #{fromEmail,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.riven.common.entity.SubscriptionInfo" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into subscription_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="clientId != null">
+        client_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="sendType != null">
+        send_type,
+      </if>
+      <if test="cronExpression != null">
+        cron_expression,
+      </if>
+      <if test="referType != null">
+        refer_type,
+      </if>
+      <if test="param != null">
+        param,
+      </if>
+      <if test="nextExecutionTime != null">
+        next_execution_time,
+      </if>
+      <if test="lastExecutionTime != null">
+        last_execution_time,
+      </if>
+      <if test="businessType != null">
+        business_type,
+      </if>
+      <if test="subscriptionType != null">
+        subscription_type,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="toEmail != null">
+        to_email,
+      </if>
+      <if test="ccEmail != null">
+        cc_email,
+      </if>
+      <if test="fromEmail != null">
+        from_email,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="clientId != null">
+        #{clientId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="sendType != null">
+        #{sendType,jdbcType=INTEGER},
+      </if>
+      <if test="cronExpression != null">
+        #{cronExpression,jdbcType=VARCHAR},
+      </if>
+      <if test="referType != null">
+        #{referType,jdbcType=VARCHAR},
+      </if>
+      <if test="param != null">
+        #{param,jdbcType=VARCHAR},
+      </if>
+      <if test="nextExecutionTime != null">
+        #{nextExecutionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastExecutionTime != null">
+        #{lastExecutionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessType != null">
+        #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="subscriptionType != null">
+        #{subscriptionType,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="toEmail != null">
+        #{toEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="ccEmail != null">
+        #{ccEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="fromEmail != null">
+        #{fromEmail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.riven.common.entity.SubscriptionInfo">
+    <!--@mbg.generated-->
+    update subscription_info
+    <set>
+      <if test="clientId != null">
+        client_id = #{clientId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="sendType != null">
+        send_type = #{sendType,jdbcType=INTEGER},
+      </if>
+      <if test="cronExpression != null">
+        cron_expression = #{cronExpression,jdbcType=VARCHAR},
+      </if>
+      <if test="referType != null">
+        refer_type = #{referType,jdbcType=VARCHAR},
+      </if>
+      <if test="param != null">
+        param = #{param,jdbcType=VARCHAR},
+      </if>
+      <if test="nextExecutionTime != null">
+        next_execution_time = #{nextExecutionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastExecutionTime != null">
+        last_execution_time = #{lastExecutionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessType != null">
+        business_type = #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="subscriptionType != null">
+        subscription_type = #{subscriptionType,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="toEmail != null">
+        to_email = #{toEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="ccEmail != null">
+        cc_email = #{ccEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="fromEmail != null">
+        from_email = #{fromEmail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.riven.common.entity.SubscriptionInfo">
+    <!--@mbg.generated-->
+    update subscription_info
+    set client_id = #{clientId,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=BIGINT},
+      send_type = #{sendType,jdbcType=INTEGER},
+      cron_expression = #{cronExpression,jdbcType=VARCHAR},
+      refer_type = #{referType,jdbcType=VARCHAR},
+      param = #{param,jdbcType=VARCHAR},
+      next_execution_time = #{nextExecutionTime,jdbcType=TIMESTAMP},
+      last_execution_time = #{lastExecutionTime,jdbcType=TIMESTAMP},
+      business_type = #{businessType,jdbcType=VARCHAR},
+      subscription_type = #{subscriptionType,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      to_email = #{toEmail,jdbcType=VARCHAR},
+      cc_email = #{ccEmail,jdbcType=VARCHAR},
+      from_email = #{fromEmail,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+<!--auto generated by MybatisCodeHelper on 2024-11-18-->
+  <select id="selectAllByUserId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from subscription_info
+    where user_id=#{userId,jdbcType=BIGINT}
+  </select>
+
+<!--auto generated by MybatisCodeHelper on 2024-11-19-->
+  <select id="selectAllByClientIdAndSubscriptionType" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from subscription_info
+    where client_id=#{clientId,jdbcType=VARCHAR} and subscription_type=#{subscriptionType,jdbcType=VARCHAR}
+  </select>
+</mapper>

@@ -1,0 +1,18 @@
+server:
+  port: 12344
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/wind?useSSL=false&serverTimezone=Asia/Shanghai
+    username: 1
+    password: 1
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+start:
+  type: time_wheel
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+    mapUnderscoreToCamelCase: true

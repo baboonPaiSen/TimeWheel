@@ -1,0 +1,222 @@
+<html>
+<head>
+    <title th:text="${emailTitle}">个人订阅邮件标题</title>
+</head>
+<body>
+<style>
+    .main {
+        margin-bottom: 24px;
+        font-family: "Microsoft YaHei", 微软雅黑, "MicrosoftJhengHei", 华文细黑, STHeiti, MingLiu;
+    }
+
+    .titleDiv {
+        color: #000000;
+        width: 100%;
+        font-weight: bold;
+        font-size: 24px;
+    }
+
+    .subTitleDiv {
+        color: #e22c2f;
+        padding-top: 16px;
+        padding-bottom: 10px;
+        padding-left: 32px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .typeDiv {
+        color: #00aec7;
+        font-size: 18px;
+        padding-top: 20px;
+        padding-bottom: 16px;
+        font-weight: bold;
+    }
+
+    .nameDiv {
+        color: #000000;
+        margin-left: 28px;
+        margin-bottom: 8px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .nameSpan {
+        display: inline-block;
+        border-bottom: 2px solid #e22c2f;
+        padding-top: 8px;
+        padding-left: 4px;
+        padding-right: 4px;
+        padding-bottom: 8px;
+    }
+
+    .listDiv {
+        padding-left: 32px;
+    }
+
+    .itemTable {
+        margin-top: 20px;
+    }
+
+    .itemTitleDiv {
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+
+    .itemRowDiv {
+        display: inline-block;
+        margin-bottom: 8px;
+    }
+
+    .itemPropFirstSpan {
+        display: inline-block;
+        padding-right: 6px;
+    }
+
+    .itemPropSpan {
+        display: inline-block;
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+
+    .itemSplitSpan {
+        color: #c5c5c5;
+    }
+
+    .itemOpenDetailDiv {
+        color: #00aec7;
+        margin-top: 12px;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .mailFootTip {
+        color: #999999;
+        font-size: 12px;
+        line-height: 22px;
+        margin-top: 20px;
+        border-top: 1px solid #c5c5c5;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+    .footTable {
+        line-height: 20px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        padding-left: 14px;
+        padding-right: 14px;
+        border-top: 1px solid #999999;
+        border-bottom: 1px solid #999999;
+        border-left: 1px solid #999999;
+        border-right: 1px solid #999999;
+    }
+
+    .mailStatement {
+        color: #999999;
+        font-size: 12px;
+        margin-top: 6px;
+        margin-bottom: 6px;
+    }
+</style>
+<table border='0' cellpadding='0' cellspacing='0' class='main' width='100%' height='100%'>
+    <tr>
+        <td align='center' valign='top'>
+            <table border='0' cellpadding='0' cellspacing='0' width='800'>
+                <tr>
+                    <td align='left' class='titleDiv' th:text="${title}">个人订阅标题</td>
+                </tr>
+                <tr>
+                    <td align='left' class='subTitleDiv' th:text="${subTitle}">个人订阅子标题</td>
+                </tr>
+                <tr>
+                    <td style='padding-bottom: 10px; padding-top: 0;margin-top: 0;margin-bottom: 0;'>
+                        <hr style='color: #ececec;margin-top: 0;margin-bottom: 0;'>
+                    </td>
+                </tr>
+                <!-- 假设这个片段是在一个已经存在的 <table> 标签内 -->
+                <tbody th:each="subscription : ${subscriptionList}">
+                <!-- 订阅类型行 -->
+                <tr>
+                    <td class='typeDiv' th:text="${subscription.type}">个人订阅类型</td>
+                </tr>
+                <!-- 订阅名称行 -->
+                <tr>
+                    <td>
+                        <div class='nameDiv'><span class='nameSpan' th:text="${subscription.name}">个人订阅名称</span></div>
+                    </td>
+                </tr>
+                <!-- 信息行，针对每个订阅下的每条信息 -->
+                <tr th:each="report : ${subscription.reports}">
+                    <td align='left' class='listDiv'>
+                        <table border='0' cellpadding='0' cellspacing='0' class='itemTable' width='768'>
+                            <tr height='28' width='768'>
+                                <td>
+                                    <div class='itemTitleDiv' th:text="${report.reportTitle}">信息标题</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class='itemRowDiv'>
+                                        <span class='itemPropFirstSpan' th:text="${report.reportDate}">信息时间</span>
+                                        <span class='itemSplitSpan'>|</span>
+                                        <span class='itemPropSpan' th:text="${report.reportSource}">信息来源</span>
+                                        <span class='itemSplitSpan'>|</span>
+                                        <span class='itemPropSpan' th:text="${report.reportAuthor}">信息作者</span>
+                                        <span class='itemSplitSpan'>|</span>
+                                        <span class='itemPropSpan' th:text="${report.reportCategory}">信息类别</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class='itemAbstractDiv' th:text="${report.abstractText}">
+                                        信息摘要内容...
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class='itemOpenDetailDiv'>查看详情</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+                <tr>
+                    <td>
+                        <div class='mailFootTip' th:text="${emailExplanation}">
+                            注：系统自动发送，请勿回复。这是您的个人订阅邮件，包含您关注的信息。如需退订，请进入个人订阅设置进行调整。
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table class='footTable' width='800'>
+                            <tr>
+                                <td>
+                                    <div class='mailStatement'>
+                                        <b>版权声明：</b>本邮件内容受版权保护，仅供个人使用。
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class='mailStatement'>
+                                        <b>免责声明：</b>本邮件内容仅作参考和资讯传播之目的，不代表任何观点或立场。
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
